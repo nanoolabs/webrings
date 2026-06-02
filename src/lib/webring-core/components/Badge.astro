@@ -1,34 +1,34 @@
 ---
-import { Image } from 'astro:assets';
-import type { HTMLAttributes } from 'astro/types';
-import { badges } from '../badges.js';
+import { Image } from 'astro:assets'
+import type { HTMLAttributes } from 'astro/types'
+import { badges } from '../badges.js'
 
 interface Props extends HTMLAttributes<'a'> {
-	site: string;
-	ring: keyof typeof badges;
-	animated?: boolean;
-	imageOverride?: ImageMetadata | string;
+	site: string
+	ring: keyof typeof badges
+	animated?: boolean
+	imageOverride?: ImageMetadata | string
 }
 
-const { site, ring, animated = false, imageOverride, ...props } = Astro.props;
+const { site, ring, animated = false, imageOverride, ...props } = Astro.props
 
 const images = import.meta.glob<{ default: ImageMetadata }>('../images/*.{png,jpg,jpeg,webp,gif}', {
 	eager: true,
-});
-const imageKeys = Object.keys(images);
+})
+const imageKeys = Object.keys(images)
 
-const badge = badges[ring];
+const badge = badges[ring]
 
-if (!badge) throw new Error(`Unknown webring: ${ring}`);
+if (!badge) throw new Error(`Unknown webring: ${ring}`)
 
-const badgeImageName = animated && 'animated' in badge ? badge.animated : badge.static;
+const badgeImageName = animated && 'animated' in badge ? badge.animated : badge.static
 
-const unknownImageError = `Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`;
+const unknownImageError = `Unable to find image: ${badgeImageName}. Please file a bug report: https://github.com/louisescher/astro-webrings/issues`
 
-if (!badgeImageName) throw new Error(unknownImageError);
+if (!badgeImageName) throw new Error(unknownImageError)
 
-const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName));
-if (!badgeImageKey) throw new Error(unknownImageError);
+const badgeImageKey = imageKeys.find((key) => key.endsWith(badgeImageName))
+if (!badgeImageKey) throw new Error(unknownImageError)
 ---
 {/* Weird formatting here is needed so no spaces are shown between multiple images. */}
 <a
@@ -41,8 +41,8 @@ if (!badgeImageKey) throw new Error(unknownImageError);
 }</a>
 <style>
 	a {
-		width: fit-content;
-		height: 31px;
-		display: inline-block;
+		width: fit-content
+		height: 31px
+		display: inline-block
 	}
 </style>

@@ -1,14 +1,14 @@
-import type { badges } from 'astro-webrings/badges';
+import type { badges } from '@/lib/webring-core/badges'
 
-import friendsOfHoustonStatic from 'astro-webrings/images/friends-of-houston.webp';
-import friendsOfHoustonAnimated from 'astro-webrings/images/friends-of-houston.gif';
+import friendsOfHoustonStatic from '@/lib/webring-core/images/friends-of-houston.webp'
+import friendsOfHoustonAnimated from '@/lib/webring-core/images/friends-of-houston.gif'
 
-import builtWithAstroStatic from 'astro-webrings/images/built-with-astro.webp';
+import builtWithAstroStatic from '@/lib/webring-core/images/built-with-astro.webp'
 
 type BadgeImageData = {
-	static: ImageMetadata;
-	animated?: ImageMetadata;
-};
+	static: ImageMetadata
+	animated?: ImageMetadata
+}
 
 const badgeImages: Record<keyof typeof badges, BadgeImageData> = {
 	'friends-of-houston': {
@@ -18,6 +18,6 @@ const badgeImages: Record<keyof typeof badges, BadgeImageData> = {
 	'built-with-astro': {
 		static: builtWithAstroStatic,
 	},
-};
+}
 
-export { badgeImages };
+export { badgeImages }

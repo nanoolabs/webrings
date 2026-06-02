@@ -1,10 +1,10 @@
-export type BadgeName = 'friends-of-houston' | 'built-with-astro';
+export type BadgeName = 'friends-of-houston' | 'built-with-astro'
 
 export type BadgeData = {
-	name: string;
-	static: string;
-	animated?: string;
-};
+	name: string
+	static: string
+	animated?: string
+}
 
 export const badges: Record<BadgeName, BadgeData> = {
 	'friends-of-houston': {
@@ -16,4 +16,4 @@ export const badges: Record<BadgeName, BadgeData> = {
 		name: 'Built with Astro',
 		static: 'built-with-astro.webp',
 	},
-};
+}

@@ -1,21 +1,21 @@
 ---
-import '@/styles/colors.css';
-import '@/styles/index.css';
-import '@/styles/prose.css';
+import '@/styles/colors.css'
+import '@/styles/index.css'
+import '@/styles/prose.css'
 
-import { Code } from 'astro:components';
-import { Font } from 'astro:assets';
+import { Code } from 'astro:components'
+import { Font } from 'astro:assets'
 
-import { badges, type BadgeName } from 'astro-webrings/badges';
-import { badgeImages } from '@/util/badge-images';
-import { Image } from 'astro:assets';
-import OpenGraphImage from '@/assets/og.png';
+import { badges, type BadgeName } from '@/lib/webring-core/badges'
+import { badgeImages } from '@/util/badge-images'
+import { Image } from 'astro:assets'
+import OpenGraphImage from '@/assets/og.png'
 
 const webringEntryExample = `{
   "name": "Example Site",
   "id": "a-unique-id",
   "url": "https://example.com"
-}`;
+}`
 
 const installCode = `# npm
 npm install astro-webrings
@@ -24,23 +24,23 @@ npm install astro-webrings
 pnpm add astro-webrings
 
 # yarn
-yarn add astro-webrings`;
+yarn add astro-webrings`
 
 const componentCode = `${'---'}
-import WebringBadge from "astro-webrings/badge";
+import WebringBadge from "@/lib/webring-core/badge"
 ${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" />
-`;
+`
 
-const componentCodeAnimated = `<WebringBadge site="example.com" ring="friends-of-houston" animated />`;
+const componentCodeAnimated = `<WebringBadge site="example.com" ring="friends-of-houston" animated />`
 
 const componentCodeImageOverride = `${'---'}
-import WebringBadge from "astro-webrings/badge";
-import MyCustomBadge from "./my-custom-badge.png";
+import WebringBadge from "@/lib/webring-core/badge"
+import MyCustomBadge from "./my-custom-badge.png"
 ${'---'}
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={MyCustomBadge} />
 <WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"/path/inside/public/to/my-custom-badge.png"} />
-<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />`;
+<WebringBadge site="example.com" ring="friends-of-houston" imageOverride={"https://example.com/my-custom-badge.png"} />`
 ---
 
 <html lang="en">
@@ -147,10 +147,10 @@ ${'---'}
 				</thead>
 				<tbody>
 					{Object.keys(badges).map(async (key) => {
-						const badge = badges[key as BadgeName];
+						const badge = badges[key as BadgeName]
 
-						const staticImage = badgeImages[key as BadgeName].static;
-						const animatedImage = badgeImages[key as BadgeName].animated;
+						const staticImage = badgeImages[key as BadgeName].static
+						const animatedImage = badgeImages[key as BadgeName].animated
 
 						return (
 							<tr>

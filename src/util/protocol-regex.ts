@@ -1,1 +1,1 @@
-export const PROTOCOL_REGEX = /^https?:\/\//;
+export const PROTOCOL_REGEX = /^https?:\/\//
