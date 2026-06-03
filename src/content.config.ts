@@ -9,7 +9,7 @@ export const webringSchema = z.object({
 
 const rings = defineCollection({
   loader: glob({
-    pattern: "**/*.json",
+    pattern: "*/*.json", // just read file on subfolder
     base: "./src/content/rings",
   }),
   schema: webringSchema,
