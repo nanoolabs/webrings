@@ -12,16 +12,17 @@
     "start": "node ./dist/server/entry.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^9.4.4",
+    "@astrojs/netlify": "^7.0.12",
     "@fontsource/geist-mono": "^5.2.8",
     "@fontsource/geist-sans": "^5.2.5",
-    "astro": "^5.14.1",
+    "astro": "^6.4.4",
     "sharp": "^0.34.4"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
-      "sharp"
+      "sharp",
+      "@parcel/watcher"
     ]
   }
 }

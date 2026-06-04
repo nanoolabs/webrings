@@ -1,0 +1,11 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[functions]
+  external_node_modules = ["sharp"]
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/entry"
+  status = 200
