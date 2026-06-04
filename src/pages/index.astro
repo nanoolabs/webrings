@@ -2,9 +2,12 @@
 import "@/styles/index.css"
 import { getCollection } from "astro:content"
 import { version } from "../../package.json"
+import { SITE, REGISTRY } from "@/consts"
 
 const allSites = await getCollection("rings")
 const sites = allSites.filter((site) => site.id !== "rings.json")
+
+const title = `${REGISTRY.TITLE} // ${SITE.TITLE}`
 ---
 
 <html lang="en">
@@ -13,7 +16,25 @@ const sites = allSites.filter((site) => site.id !== "rings.json")
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>NANOO // NETWORK_REGISTRY</title>
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={REGISTRY.DESCRIPTION} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE.URL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={REGISTRY.DESCRIPTION} />
+    <meta property="og:image" content={new URL(SITE.OG_IMAGE, SITE.URL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={SITE.URL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={REGISTRY.DESCRIPTION} />
+    <meta property="twitter:image" content={new URL(SITE.OG_IMAGE, SITE.URL)} />
   </head>
   <body>
     <div class="container">
