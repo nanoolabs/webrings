@@ -1,40 +1,119 @@
-html,
-body {
-	background-color: var(--background-base);
-	color: var(--text-normal);
-	font-family: var(--font-inter);
-	margin: 0;
+@import "@fontsource/geist-mono";
+
+:root {
+  --bg: #050505;
+  --accent: #00ffff;
+  --border: #1a1a1a;
+  --text: #a0a0a0;
+  --text-bright: #ffffff;
+  --font-mono: "Geist Mono", monospace;
 }
 
 body {
-	margin: 2rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  margin: 0;
+  padding: 2rem;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
 }
 
-.card {
-	margin: 0 auto;
-	max-width: 60ch;
-	border: 1px solid var(--border);
-	padding: 1rem;
-	border-radius: 0.5rem;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.badge-images {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
-	flex-wrap: wrap;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
 }
 
-.top-image {
-	border: 1px solid var(--border);
-	width: 100%;
-	aspect-ratio: 1.9 / 1;
-	border-radius: 0.25rem;
-	height: auto;
+.brand {
+  color: var(--text-bright);
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
-.prose code {
-	word-break: break-word;
+.status-tag {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+h1 {
+  color: var(--text-bright);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+  max-width: 600px;
+}
+
+.registry-desc {
+  max-width: 500px;
+  margin-bottom: 4rem;
+  opacity: 0.8;
+}
+
+.node-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.node-table th {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 1.5rem 0 0.5rem 0;
+  color: var(--text);
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+}
+
+.node-table td {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.node-id {
+  color: var(--text-bright);
+  font-weight: 500;
+}
+
+.node-ring {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.node-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.node-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 8rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  opacity: 0.4;
 }
