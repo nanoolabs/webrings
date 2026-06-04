@@ -7,7 +7,7 @@ export default defineConfig({
   // just using passthroughImageService when development on my termux
     service: process.env.NODE_ENV === "development" ? passthroughImageService() : undefined,
   },
-  // just  fix adapter netlify for my termux
-  adapter: process.env.NODE_ENV === "production" ? netlify() : undefined,
+  // use netlify adapter only when on netlify to avoid deno issues in termux
+  adapter: process.env.NETLIFY === "true" ? netlify() : undefined,
   output: "server",
 })
