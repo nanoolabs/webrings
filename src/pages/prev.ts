@@ -1,64 +1,62 @@
 import { getCollection } from "astro:content"
 import type { APIRoute } from "astro"
-import type { webringSchema } from "@/content.config"
-import type { z } from "astro:schema"
 import { PROTOCOL_REGEX } from "@/util/protocol-regex"
 
 export const prerender = false
 
 export const GET: APIRoute = async (ctx) => {
   let currentSite = ctx.url.searchParams.get("site")
+  const ringId = ctx.url.searchParams.get("ring")
 
   if (!currentSite)
     return new Response("No `site` parameter has been provided.", {
       status: 400,
     })
 
+  if (!ringId)
+    return new Response("No `ring` parameter has been provided.", {
+      status: 400,
+    })
+
   currentSite = currentSite.replace(PROTOCOL_REGEX, "")
-  const webring = ctx.url.searchParams.get("ring")
 
-  const knownRings = await getCollection("webrings")
+  const allSites = await getCollection("rings")
+  
+  // Filter sites belonging to the requested ring
+  const ringSites = allSites.filter(entry => entry.id.startsWith(`${ringId}/`))
 
-  const activeRing = knownRings.find((ring) => ring.data.slug === webring)
-  if (!activeRing) {
+  if (ringSites.length === 0) {
     return new Response(
-      "Unknown webring. Make sure the ring parameter is correct.",
+      `Unknown webring: ${ringId}`,
       {
         status: 400,
       },
     )
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: Needed to work, TypeScript is mad otherwise
-  const ringCollection = (await getCollection(
-    activeRing.data.collection as any,
-  )) as Array<{
-    data: z.infer<typeof webringSchema>
-  }>
-
-  const currentSiteIndex = ringCollection.findIndex(
+  const currentSiteIndex = ringSites.findIndex(
     (entry) =>
       entry.data.id === currentSite ||
-      entry.data.url.replace(PROTOCOL_REGEX, "") === currentSite,
+      entry.data.url.replace(PROTOCOL_REGEX, "") === currentSite ||
+      entry.id === `${ringId}/${currentSite}`,
   )
 
   if (currentSiteIndex < 0) {
     return new Response(
-      "Unknown site. Please submit a PR to https://github.com/louisescher/astro-webrings to add it.",
+      "Unknown site in this ring.",
       {
         status: 400,
       },
     )
   }
 
-  const prevSiteIdx =
-    currentSiteIndex - 1 < 0 ? ringCollection.length - 1 : currentSiteIndex - 1
-  const previousSite = ringCollection[prevSiteIdx]
+  const prevSite =
+    ringSites[(currentSiteIndex - 1 + ringSites.length) % ringSites.length]
 
   return new Response(null, {
     status: 302,
     headers: new Headers({
-      Location: previousSite.data.url,
+      Location: prevSite.data.url,
     }),
   })
 }
