@@ -1,6 +1,7 @@
 import { getCollection } from "astro:content"
 import type { APIRoute } from "astro"
-import { PROTOCOL_REGEX } from "@/util/protocol-regex"
+import { PROTOCOL_REGEX } from "@/util/protocol"
+import { render } from "@/util/handshake"
 
 export const prerender = false
 
@@ -21,18 +22,15 @@ export const GET: APIRoute = async (ctx) => {
   currentSite = currentSite.replace(PROTOCOL_REGEX, "")
 
   const allSites = await getCollection("rings")
-  
-  // Filter sites belonging to the requested ring
-  // The entry ID format is "ringId/siteId" due to the glob loader
-  const ringSites = allSites.filter(entry => entry.id.startsWith(`${ringId}/`))
+
+  const ringSites = allSites.filter((entry) =>
+    entry.id.startsWith(`${ringId}/`),
+  )
 
   if (ringSites.length === 0) {
-    return new Response(
-      `Unknown webring: ${ringId}`,
-      {
-        status: 400,
-      },
-    )
+    return new Response(`Unknown webring: ${ringId}`, {
+      status: 400,
+    })
   }
 
   const currentSiteIndex = ringSites.findIndex(
@@ -43,21 +41,22 @@ export const GET: APIRoute = async (ctx) => {
   )
 
   if (currentSiteIndex < 0) {
-    return new Response(
-      "Unknown site in this ring.",
-      {
-        status: 400,
-      },
-    )
+    return new Response("Unknown site in this ring.", {
+      status: 400,
+    })
   }
 
-  const nextSite =
-    ringSites[(currentSiteIndex + 1) % ringSites.length]
+  const nextSite = ringSites[(currentSiteIndex + 1) % ringSites.length]
 
-  return new Response(null, {
-    status: 302,
-    headers: new Headers({
-      Location: nextSite.data.url,
-    }),
+  const html = render("NEXT", ringId, currentSite, {
+    name: nextSite.id.split("/")[1].replace(".json", ""),
+    url: nextSite.data.url,
+  })
+
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/html",
+    },
   })
 }
