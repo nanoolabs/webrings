@@ -7,7 +7,7 @@ import { SITE, REGISTRY } from "@/consts"
 const allSites = await getCollection("rings")
 const sites = allSites.filter((site) => site.id !== "rings.json")
 
-const title = `${REGISTRY.TITLE} // ${SITE.TITLE}`
+const title = SITE.TITLE
 ---
 
 <html lang="en">
@@ -76,7 +76,7 @@ const title = `${REGISTRY.TITLE} // ${SITE.TITLE}`
                         href={`/next?site=${cleanId}&ring=${ringName}`}
                         class="node-link"
                       >
-                        [ Track_Node ]
+                        [ Handshake ]
                       </a>
                     </td>
                   </tr>
