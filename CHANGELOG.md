@@ -1,6 +1,18 @@
 # Nanoo Webrings Changelog
 
 All notable changes to nanoo-webrings will be documented here.
+## [1.1.0] - 2026-07-06
+
+### Features
+
+- Migrate Vercel to Cloudflare Pages ([d336600](https://github.com/nanoolabs/webrings/commit/d33660075236dc91f6ac0efd2587d6e0b001130b))
+
+### Maintenance
+
+- Regenerate lockfile (purge vercel/netlify deps) ([56942b1](https://github.com/nanoolabs/webrings/commit/56942b1c58c866d821807859b23a0b91a4c16a46))
+- Bump node-version to v24 ([2ce22e7](https://github.com/nanoolabs/webrings/commit/2ce22e7343792ccd97b67afcfa6493ab8086f40c))
+- Add .node-version (v22) and wrangler.jsonc with nodejs_compat ([1a5d6b8](https://github.com/nanoolabs/webrings/commit/1a5d6b8cac5520c2bc2c3d556b68701a1d6e8475))
+
 ## [1.0.0] - 2026-07-05
 
 ### Bug Fixes
@@ -15,6 +27,7 @@ All notable changes to nanoo-webrings will be documented here.
 
 ### Maintenance
 
+- Integration git-cliff and generated CHANGELOG ([6f5a462](https://github.com/nanoolabs/webrings/commit/6f5a462dcfc08ecc5d2b087daf7fa188f7b71a82))
 - Update title and node link ([27a6480](https://github.com/nanoolabs/webrings/commit/27a64805da7316bcd2bad83b923001f037297d6e))
 - Migrate from Netlify to Vercel ([efee751](https://github.com/nanoolabs/webrings/commit/efee7518b1ce464251744be09b0e082716fdd449))
 - Update README and OG image for Naooo branding (Nanoo-fied) ([69884a2](https://github.com/nanoolabs/webrings/commit/69884a29dfaf99e5468c93036392929925d3d301))
