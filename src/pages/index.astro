@@ -3,6 +3,7 @@ import "@/styles/index.css"
 import { getCollection } from "astro:content"
 import { version } from "../../package.json"
 import { SITE, REGISTRY } from "@/consts"
+import RingNav from "@/components/RingNav.astro"
 
 const allSites = await getCollection("rings")
 const sites = allSites.filter((site) => site.id !== "rings.json")
@@ -87,6 +88,10 @@ const title = SITE.TITLE
         </table>
       </main>
 
+      <div class="ringnav-wrapper">
+        <RingNav />
+      </div>
+
       <footer>
         <div>&copy; 2026 NANOO LABS</div>
         <div>V{version} // REGISTRY_NODE</div>
@@ -94,3 +99,13 @@ const title = SITE.TITLE
     </div>
   </body>
 </html>
+
+<style>
+  .ringnav-wrapper {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    margin-top: 4rem;
+  }
+</style>

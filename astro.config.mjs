@@ -1,5 +1,5 @@
 import { defineConfig, passthroughImageService } from "astro/config"
-import vercel from "@astrojs/vercel"
+import cloudflare from "@astrojs/cloudflare"
 
 export default defineConfig({
   site: "https://webrings.nanoolabs.dev",
@@ -9,11 +9,8 @@ export default defineConfig({
         ? passthroughImageService()
         : undefined,
   },
-  // vercel handle the adapter automatically in production
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
+  adapter: cloudflare({
+    imageService: true,
   }),
   output: "server",
 })
