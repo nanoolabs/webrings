@@ -24,7 +24,7 @@ export const GET: APIRoute = async (ctx) => {
   const allSites = await getCollection("rings")
 
   const ringSites = allSites.filter((entry) =>
-    entry.id.startsWith(`${ringId}/`),
+    entry.id.startsWith(`${ringId}/`)
   )
 
   if (ringSites.length === 0) {
@@ -37,7 +37,7 @@ export const GET: APIRoute = async (ctx) => {
     (entry) =>
       entry.data.id === currentSite ||
       entry.data.url.replace(PROTOCOL_REGEX, "") === currentSite ||
-      entry.id === `${ringId}/${currentSite}`,
+      entry.id === `${ringId}/${currentSite}`
   )
 
   if (currentSiteIndex < 0) {
