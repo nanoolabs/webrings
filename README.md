@@ -13,7 +13,7 @@ SSoT for Nanoo Federation node registry. each member site connects in a circular
 - **Runtime:** Cloudflare Workers (Edge SSR)
 - **Framework:** Astro v6 (SSR, server render)
 - **Content:** Astro content collections with zod validation
-- **Styling:** Plain CSS, Geist Mono
+- **Styling:** [@nlbs/css](https://github.com/nanoolabs/css) design tokens, Geist Pixel / Geist Mono
 
 ## Quickstart
 
@@ -31,7 +31,7 @@ src/
 ├── pages/          Routes (index.astro, next.ts, prev.ts)
 ├── content/rings/  Ring member data (JSON files per site)
 ├── components/     Astro component (RingNav.astro)
-├── util/           Handshake renderer, protocol helper
+├── util/           resolveRing matcher, handshake renderer
 └── consts.ts       Site & registry metadata
 ```
 
