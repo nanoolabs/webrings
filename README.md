@@ -65,6 +65,6 @@ Part of [nanoolabs.dev](https://nanoolabs.dev).
 
 ## License
 
-Proprietary — Nanoo Labs © 2026.
+MIT - Nanoo Labs © 2026.
 
 _Based on [astro-webrings](https://github.com/louisescher/astro-webrings) repository by Louis Escher (@louisescher). Refactored and extended by Nanoo Labs._
