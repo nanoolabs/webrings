@@ -16,7 +16,7 @@
     "@fontsource/geist-mono": "^5.2.8",
     "@fontsource/geist-pixel": "^5.3.0",
     "@nlbs/css": "0.3.2",
-    "astro": "^6.4.4",
+    "astro": "^7.1.1",
     "sharp": "^0.34.4"
   },
   "pnpm": {
