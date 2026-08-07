@@ -1,23 +1,18 @@
 @import "@fontsource/geist-mono";
+@import "@fontsource/geist-pixel";
 
 :root {
-  --bg: #050505;
-  --accent: #00ffff;
-  --border: #1a1a1a;
-  --text: #a0a0a0;
-  --text-bright: #ffffff;
-  --font-mono: "Geist Mono", monospace;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-mono);
-  margin: 0;
+  background-color: var(--nl-color-canvas);
+  color: var(--nl-color-body);
+  font-family: "Geist Pixel", var(--nl-font-mono);
   padding: 2rem;
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: -0.01em;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .container {
@@ -29,26 +24,31 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--nl-color-border);
   padding-bottom: 1.5rem;
   margin-bottom: 3rem;
 }
 
 .brand {
-  color: var(--text-bright);
+  color: var(--nl-color-ink-strong);
   font-weight: 500;
   text-transform: uppercase;
 }
 
 .status-tag {
-  color: var(--accent);
+  color: var(--nl-color-primary);
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.status-tag:hover {
+  text-decoration: underline;
 }
 
 h1 {
-  color: var(--text-bright);
+  color: var(--nl-color-ink-strong);
   font-size: 2.2rem;
   font-weight: 500;
   line-height: 1.1;
@@ -86,7 +86,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 2rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--nl-color-border);
 }
 
 .node-table th {
@@ -94,29 +94,29 @@ h1 {
   text-transform: uppercase;
   font-size: 10px;
   padding: 1.5rem 0 0.5rem 0;
-  color: var(--text);
+  color: var(--nl-color-body);
   opacity: 0.5;
   letter-spacing: 0.1em;
 }
 
 .node-table td {
   padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--nl-color-border);
   vertical-align: middle;
 }
 
 .node-id {
-  color: var(--text-bright);
+  color: var(--nl-color-ink-strong);
   font-weight: 500;
 }
 
 .node-ring {
-  color: var(--text);
+  color: var(--nl-color-body);
   opacity: 0.7;
 }
 
 .node-link {
-  color: var(--accent);
+  color: var(--nl-color-primary);
   text-decoration: none;
   font-weight: 600;
   font-size: 11px;
@@ -129,7 +129,7 @@ h1 {
 
 footer {
   margin-top: 8rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--nl-color-border);
   padding-top: 1.5rem;
   display: flex;
   justify-content: space-between;
