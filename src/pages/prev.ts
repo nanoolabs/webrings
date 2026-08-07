@@ -1,63 +1,30 @@
-import { getCollection } from "astro:content"
 import type { APIRoute } from "astro"
-import { PROTOCOL_REGEX } from "@/util/protocol"
 import { render } from "@/util/handshake"
+import { resolveRing } from "@/util/ring"
 
 export const prerender = false
 
 export const GET: APIRoute = async (ctx) => {
-  let currentSite = ctx.url.searchParams.get("site")
-  const ringId = ctx.url.searchParams.get("ring")
+  const resolved = await resolveRing(ctx.url)
 
-  if (!currentSite)
-    return new Response("No `site` parameter has been provided.", {
-      status: 400,
-    })
-
-  if (!ringId)
-    return new Response("No `ring` parameter has been provided.", {
-      status: 400,
-    })
-
-  currentSite = currentSite.replace(PROTOCOL_REGEX, "")
-
-  const allSites = await getCollection("rings")
-
-  const ringSites = allSites.filter((entry) =>
-    entry.id.startsWith(`${ringId}/`)
-  )
-
-  if (ringSites.length === 0) {
-    return new Response(`Unknown webring: ${ringId}`, {
-      status: 400,
-    })
-  }
-
-  const currentSiteIndex = ringSites.findIndex(
-    (entry) =>
-      entry.data.id === currentSite ||
-      entry.data.url.replace(PROTOCOL_REGEX, "") === currentSite ||
-      entry.id === `${ringId}/${currentSite}`
-  )
-
-  if (currentSiteIndex < 0) {
-    return new Response("Unknown site in this ring.", {
-      status: 400,
-    })
+  if ("error" in resolved) {
+    return new Response(resolved.error, { status: 400 })
   }
 
   const prevSite =
-    ringSites[(currentSiteIndex - 1 + ringSites.length) % ringSites.length]
+    resolved.ringSites[
+      (resolved.index - 1 + resolved.ringSites.length) %
+        resolved.ringSites.length
+    ]
 
-  const html = render("PREV", ringId, currentSite, {
-    name: prevSite.id.split("/")[1].replace(".json", ""),
-    url: prevSite.data.url,
-  })
-
-  return new Response(html, {
-    status: 200,
-    headers: {
-      "Content-Type": "text/html",
-    },
-  })
+  return new Response(
+    render("PREV", resolved.ringId, resolved.currentSite, {
+      name: prevSite.id.split("/")[1].replace(".json", ""),
+      url: prevSite.data.url,
+    }),
+    {
+      status: 200,
+      headers: { "Content-Type": "text/html" },
+    }
+  )
 }
