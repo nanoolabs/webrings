@@ -1,5 +1,5 @@
-@import "@fontsource/geist-mono";
-@import "@fontsource/geist-pixel";
+@import '@fontsource/geist-mono';
+@import '@fontsource/geist-pixel';
 
 :root {
   color-scheme: dark;
@@ -8,7 +8,7 @@
 body {
   background-color: var(--nl-color-canvas);
   color: var(--nl-color-body);
-  font-family: "Geist Pixel", var(--nl-font-mono);
+  font-family: 'Geist Pixel', var(--nl-font-mono);
   padding: 2rem;
   font-size: 16px;
   letter-spacing: -0.01em;

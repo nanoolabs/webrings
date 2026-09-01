@@ -1,6 +1,18 @@
+# Dependencies
 node_modules
+
+# Build output
 dist
 .astro
+
+# Lockfiles
 pnpm-lock.yaml
+
+# Auto-generated
 CHANGELOG.md
+
+# Wrangler Cloudflare
 .wrangler
+
+# GitHub workflows
+.github/

@@ -6,18 +6,18 @@ interface Props {
 }
 
 const {
-  ring = "nanoo-network",
-  site = "webrings",
+  ring = 'nanoo-network',
+  site = 'webrings',
   class: className,
 } = Astro.props
-const baseUrl = "https://webrings.nanoolabs.dev"
+const baseUrl = 'https://webrings.nanoolabs.dev'
 
 const prevUrl = `${baseUrl}/prev?site=${site}&ring=${ring}`
 const nextUrl = `${baseUrl}/next?site=${site}&ring=${ring}`
 const hubUrl = baseUrl
 ---
 
-<div class:list={["nanoo-registry-widget", className]}>
+<div class:list={['nanoo-registry-widget', className]}>
   <div class="reg-box">
     <div class="reg-identity">
       <span class="reg-label-full">REGISTRY_NODE</span>
@@ -47,7 +47,7 @@ const hubUrl = baseUrl
     --ring-body: #bdbdbd;
     --ring-mute: #6b7280;
 
-    font-family: "Geist Mono", ui-monospace, monospace;
+    font-family: 'Geist Mono', ui-monospace, monospace;
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 0.15em;

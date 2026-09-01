@@ -1,5 +1,5 @@
-import { defineCollection, z } from "astro:content"
-import { glob } from "astro/loaders"
+import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 
 export const webringSchema = z.object({
   name: z.string().min(1),
@@ -9,8 +9,8 @@ export const webringSchema = z.object({
 
 const rings = defineCollection({
   loader: glob({
-    pattern: "*/*.json", // just read file on subfolder
-    base: "./src/content/rings",
+    pattern: '*/*.json', // just read file on subfolder
+    base: './src/content/rings',
   }),
   schema: webringSchema,
 })

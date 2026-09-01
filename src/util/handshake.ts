@@ -1,10 +1,10 @@
-import { SITE } from "../consts"
+import { SITE } from '../consts'
 
 export function render(
-  type: "NEXT" | "PREV",
+  type: 'NEXT' | 'PREV',
   ringId: string,
   currentSite: string,
-  targetSite: { name: string; url: string }
+  targetSite: { name: string; url: string },
 ) {
   const title = `REGISTRY_REDIRECT`
 
